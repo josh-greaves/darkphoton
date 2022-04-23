@@ -11,6 +11,7 @@ Archive relic data (not plotted): Relic_v5_V_res_v2.root
 CMS expected/observed data from monojet invisible decay with full detector simulation from DMsimp vector model: HEPData.root. source: cms_ex_20_004
 
 
+
 HAHM model github: https://github.com/davidrcurtin/HAHM/edit/main/README.md
 
 HAHM papers: arXiv:1412.0018, arXiv:1312.4992. 
