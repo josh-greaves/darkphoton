@@ -12,7 +12,11 @@ CMS expected/observed data from monojet invisible decay with full detector simul
 
 
 HAHM model github: https://github.com/davidrcurtin/HAHM/edit/main/README.md
+
 HAHM papers: arXiv:1412.0018, arXiv:1312.4992. 
+
 HAHM DP modification github: https://github.com/violatingcp/darkphoton_highmass
+
 Thesis: 
+
 Other relevant papers: arXiv:2203.12035, arXiv:
