@@ -28,6 +28,7 @@ Other relevant papers: arXiv:2203.12035, arXiv:
  
 ## Relic Plots
 
+0. Setup for DMsimp coupling scan (HAHM mixing scan) includes configuration files: Launch.txt (launch_eps.txt), generate.txt (generate_eps.txt), root_parser.py (root_parser_EPS.py), relic_compute.C (relic_compute_eps.C). These all need to be tar'd up in /MG5_aMC_v2_9_4/ in relic.tgz (included here). This is untar'd on each condor local machine during process. 
 1. Run Begin.py. Loops through dark matter masses mXd and submits one job to condor for each mass. Each job will sweep through mediator masses and couopling/mixing parameter according to 'launch.txt' (called by run.sh) or 'launch_eps.txt' (called by run_eps.sh), whether you want to plot coupling for DMsimp (vector) or epsilon for HAHM (dark photon), respectively.
 2. This calls run.sh (run_eps.sh), which calls generate.txt to import the appropriate model (DMsimp or HAHM), and generate the relic density fro MadDM using the parameters defined in launch.txt. 
 3. Launch.txt scans the defined range of mediator masses my1 or mZDinput (DMsimp and HAHM respectively). Also scans 10^-5 to 10^5 in coupling for DMsimp, and 10^-7 to 10 in mixing parameter for HAHM.
