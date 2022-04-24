@@ -34,3 +34,7 @@ Other relevant papers: arXiv:2203.12035, arXiv:
 4. Run.sh (run_eps.sh) then calls root_parser.py (root_parser_eps.py). This parses the output of MadDM (scan_run_01.txt) as a root file. The column numbers may need adjusting in this python file, depending on scan_run.txt.
 5. Run.sh (run_eps.sh) then calls relic_compute.C (relic_compute_eps.C). This takes the current root file, and creates a new root file with the max and min coupling (mixing) computed in separate TTrees. (See Thesis section 'Relic Plots' for details).
 6. All local outputs of parameter inputs, scan output text, and both stage root files are copied to /eos/ storage.
+7. All ...proc.root output files need to be merged with 'hadd' command to be plotted with output.C script.
+8. Output_dms.C (output_eps.C) generate output plot from output_proc.root (output_eps_proc.root) to show minimum heat map plot for entire scan. Previous merge step is required. Bin sizes need to be set manually in the code based on how the scan was done (resolution, how many masses scanned, etc).
+
+
