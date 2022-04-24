@@ -1,4 +1,7 @@
-# darkphoton
+## Dark Photon Plots
+
+# Limit Plots
+
 Dark Photon limit scaling and min coupling/mixing Relic calculation
 
 See "limit_plot_files.zip" for all files required to plot:
@@ -21,3 +24,6 @@ HAHM DP modification github: https://github.com/violatingcp/darkphoton_highmass
 Thesis: 
 
 Other relevant papers: arXiv:2203.12035, arXiv:
+
+ 
+# Relic Plots
