@@ -1,6 +1,6 @@
-## Dark Photon Plots
+# Dark Photon Plots
 
-# Limit Plots
+## Limit Plots
 
 Dark Photon limit scaling and min coupling/mixing Relic calculation
 
@@ -26,4 +26,4 @@ Thesis:
 Other relevant papers: arXiv:2203.12035, arXiv:
 
  
-# Relic Plots
+## Relic Plots
