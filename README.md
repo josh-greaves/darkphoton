@@ -13,6 +13,9 @@ Archive relic data (not plotted): Relic_v5_V_res_v2.root
 
 CMS expected/observed data from monojet invisible decay with full detector simulation from DMsimp vector model: HEPData.root. source: cms_ex_20_004
 
+For limits calculated from MadGraph simulation, run MadGraph to produce .hepmc output files, and then run these .hepmc's through MadAnalysis to get calculated expected and observed limit values.
+[MORE INSTRUCTIONS TO FOLLOW]
+
 
 
 HAHM model github: https://github.com/davidrcurtin/HAHM/edit/main/README.md
