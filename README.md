@@ -1,6 +1,10 @@
 # Dark Photon Plots
 
 ## Limit Plots
+#### Files
+- begin.py: either runs launch script, or submits to condor
+- run_mg5.sh / run_mg5_HAHM.sh: launch script. Writes an input.txt file with the simulation parameters (process, beam energy, cuts, etc.). One file for DMSimp (vector) one file for DPhoton (HAHM)
+- submit_condor_mg5.sh: condor submission. (sets max runtime/cutoff, parameter called 'JobFlavour')
 
 Dark Photon limit scaling and min coupling/mixing Relic calculation
 
@@ -8,23 +12,44 @@ See "limit_plot_files.zip" for all files required to plot:
 Relic data from DMsimp: DMS_relic.root
 
 Relic data from HAHM dark photon model: HAHM_relic.root
-
 Archive relic data (not plotted): Relic_v5_V_res_v2.root
-
 CMS expected/observed data from monojet invisible decay with full detector simulation from DMsimp vector model: HEPData.root. source: cms_ex_20_004
 
-For limits calculated from MadGraph simulation, run MadGraph to produce .hepmc output files, and then run these .hepmc's through MadAnalysis to get calculated expected and observed limit values.
+#### MadGraph simulation
+For limits calculated from MadGraph simulation, run MadGraph (I used v2_9_4) to produce .hepmc output files
+1. Run begin.py. This either runs the launch script, or submits to condor.
+2. .hepmc's will be output in the directory designated in the launch script (e.g. run_mg5.sh)
+#### MadAnalysis5
+To calculate the limits from .hepmc using madanalyis on lxplus8 (madanalysis can be a bit -very- temperamental). Configure MA5:
+1. Ensure you are running lxplus8, create a local directory where you want to conduct your Mad analyzing...
+2. source /cvmfs/sft.cern.ch/lcg/views/LCG_99/x86_64-centos8-gcc10-opt/setup.sh   -- this is a configuration setup for the environment, to a specific LCG view (LHC Computing Grid)
+3. git clone https://github.com/MadAnalysis/madanalysis5.git
+4. cd madanalysis5
+5. ./bin/ma5 -b -f [-b force sample analyzer static library rebuild; -f means force answer 'y' to any prompt]  -- Maybe overkill - but ensures a complete build.
+6. exit
+7. source ./tools/SampleAnalyzer/setup.sh   -- ensures setup has completed fully
+8. Add lines TO .../madanalysis5/tools/PAD/Input/Cards/delphes_card_cms_exo_20_004.tcl: (OR just replace this input card file with the delphes_card file in the zip)  --  this is the input card corresponding to the cms_exo_20_004 analysis, which is the 13TeV Run 2 monojet analysis relevant to this work.
+9. ./bin/ma5 -R   --    (R is 'recast' mode, necessary for this analysis)
+10. install delphes
+11. install PAD
+12. set main.recast = on
+Run MA5 to obtain limits:
+1. import ..../Events/run_01/tag_1_pythia8_events.hepmc.gz  as  name_your_output
+2. submit name_your_output   (you will see Do you want to edit the recasting_card? dont answer yet.)
+3. (in another window to avoid this manual step):  cp recasting_card.dat .../name_your_output/Input/       -- this  switches off all analyses except cms_exo_20_004
+4. edit card: type Y to check that all are off except the relevant analysis, or type N just to keep going.
+5. The relevant output is stored: ..../madanalysis5/name_your_output/Output/SAF/CLs_output_summary.dat, and the expected/observed limits are at the very bottom.
+
+
+
+, and then run these .hepmc's through MadAnalysis to get calculated expected and observed limit values.
 [MORE INSTRUCTIONS TO FOLLOW]
 
 
-
+#### Dark Photon (Hidden Abelian Higgs Model, HAHM) model info:
 HAHM model github: https://github.com/davidrcurtin/HAHM/edit/main/README.md
-
 HAHM papers: arXiv:1412.0018, arXiv:1312.4992. 
-
 HAHM DP modification github: https://github.com/violatingcp/darkphoton_highmass
-
-Thesis: 
 
 Other relevant papers: arXiv:2203.12035, arXiv:
 
