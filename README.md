@@ -10,9 +10,13 @@ See "limit_plot_files.zip" for all files required to plot:
 - run_mg5.sh / run_mg5_HAHM.sh: launch script. Writes an input.txt file with the simulation parameters (process, beam energy, cuts, etc.). One file for DMSimp (vector) one file for DPhoton (HAHM). Calls MadGraph5 with this input file.
 - submit_condor_mg5.sh: condor submission. (sets max runtime/cutoff, parameter called 'JobFlavour')
 - HEPdata.root: CMS expected/observed data from monojet invisible decay with full detector simulation from DMsimp vector model: cms_ex_20_004
-- Archive relic data (not plotted): Relic_v5_V_res_v2.root
-- Relic data from HAHM dark photon model: HAHM_relic.root
-- Relic data from DMsimp: DMS_relic.root
+- Relic_v5_V_res_v2.root: Archive relic data (not plotted)
+- HAHM_relic.root: Relic data from HAHM dark photon model
+- DMS_relic.root: Relic data from DMsimp
+- delphes_card_cms_exo_20_004.tcl: input card replacement for MadAnalysis5(MA5), adding required PDG code for dark photon (18,-18). HAHM model will not run properly without this change. DMSimp vector model will.
+- recasting_card.dat: replacement input selection card replacement, switching off all analyses except cms_exo_20_004.
+- limit_plot.py: python code to produce the plot. Contains read-in's of relevant root files, and hardcoded values from the following spreadsheet (sorry)
+- JGreaves_limits_calc.xlsx: a rudimentary but potentially helpful spreadsheet of results detailing calculations made. (Connection point between MA5 output and limit_plot.py)
 
 #### MadGraph simulation
 For limits calculated from MadGraph simulation, run MadGraph (I used v2_9_4) to produce .hepmc output files
