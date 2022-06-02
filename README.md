@@ -4,15 +4,15 @@
 Dark Photon limit scaling and min coupling/mixing Relic calculation
 
 See "limit_plot_files.zip" for all files required to plot:
-Relic data from DMsimp: DMS_relic.root
 
-Relic data from HAHM dark photon model: HAHM_relic.root
-Archive relic data (not plotted): Relic_v5_V_res_v2.root
-CMS expected/observed data from monojet invisible decay with full detector simulation from DMsimp vector model: HEPData.root. source: cms_ex_20_004
 #### Files
 - begin.py: either runs launch script, or submits to condor
 - run_mg5.sh / run_mg5_HAHM.sh: launch script. Writes an input.txt file with the simulation parameters (process, beam energy, cuts, etc.). One file for DMSimp (vector) one file for DPhoton (HAHM). Calls MadGraph5 with this input file.
 - submit_condor_mg5.sh: condor submission. (sets max runtime/cutoff, parameter called 'JobFlavour')
+- HEPdata.root: CMS expected/observed data from monojet invisible decay with full detector simulation from DMsimp vector model: cms_ex_20_004
+- Archive relic data (not plotted): Relic_v5_V_res_v2.root
+- Relic data from HAHM dark photon model: HAHM_relic.root
+- Relic data from DMsimp: DMS_relic.root
 
 #### MadGraph simulation
 For limits calculated from MadGraph simulation, run MadGraph (I used v2_9_4) to produce .hepmc output files
