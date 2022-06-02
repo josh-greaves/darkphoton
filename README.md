@@ -3,7 +3,7 @@
 ## Limit Plots
 #### Files
 - begin.py: either runs launch script, or submits to condor
-- run_mg5.sh / run_mg5_HAHM.sh: launch script. Writes an input.txt file with the simulation parameters (process, beam energy, cuts, etc.). One file for DMSimp (vector) one file for DPhoton (HAHM)
+- run_mg5.sh / run_mg5_HAHM.sh: launch script. Writes an input.txt file with the simulation parameters (process, beam energy, cuts, etc.). One file for DMSimp (vector) one file for DPhoton (HAHM). Calls MadGraph5 with this input file.
 - submit_condor_mg5.sh: condor submission. (sets max runtime/cutoff, parameter called 'JobFlavour')
 
 Dark Photon limit scaling and min coupling/mixing Relic calculation
