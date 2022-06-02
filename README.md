@@ -32,6 +32,7 @@ To calculate the limits from .hepmc using madanalyis on lxplus8 (madanalysis can
 10. install delphes
 11. install PAD
 12. set main.recast = on
+
 Run MA5 to obtain limits:
 1. import ..../Events/run_01/tag_1_pythia8_events.hepmc.gz  as  name_your_output
 2. submit name_your_output   (you will see Do you want to edit the recasting_card? dont answer yet.)
@@ -39,10 +40,6 @@ Run MA5 to obtain limits:
 4. edit card: type Y to check that all are off except the relevant analysis, or type N just to keep going.
 5. The relevant output is stored: ..../madanalysis5/name_your_output/Output/SAF/CLs_output_summary.dat, and the expected/observed limits are at the very bottom.
 
-
-
-, and then run these .hepmc's through MadAnalysis to get calculated expected and observed limit values.
-[MORE INSTRUCTIONS TO FOLLOW]
 
 
 #### Dark Photon (Hidden Abelian Higgs Model, HAHM) model info:
