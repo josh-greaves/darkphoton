@@ -24,8 +24,8 @@ MadGraph can be temperamental. I presume here that the user already has a workin
 The local directory of a working version needs to be zipped up (into "mg5.tgz" in my example) in order to be un-tar'd in 'condor space', when submitting jobs to the cluster.
 
 #### MadGraph simulation (on lxplus)
-1. Run begin.py. This either runs the launch script, or submits to condor. NOTE: running begin.py is designed to launch Madgraph many times, with different input parameters. 
-2. The launch scripts (e.g. run_mg5.sh) can be run individually, or the contained commands entered at the MG5 command prompt manually.
+1. For looping/submitting to condor: run begin.py. This either runs the launch script, or submits to condor. NOTE: running begin.py is designed to launch Madgraph many times, with different input parameters. 
+2. For a single launch: the launch scripts (e.g. run_mg5.sh) can be run individually, or the contained commands entered at the MG5 command prompt manually.
 3. .hepmc's will be output in the directory designated in the launch script (e.g. run_mg5.sh)
 #### MadAnalysis5 (on lxplus8)
 To calculate the limits from .hepmc using madanalyis on lxplus8 (madanalysis can be a bit -very- temperamental). 
