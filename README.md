@@ -6,7 +6,7 @@ Dark Photon limit scaling and min coupling/mixing Relic calculation
 See "limit_plot_files.zip" for all files required to plot:
 
 #### Files
-- begin.py: either runs launch script, or submits to condor
+- begin.py: either runs launch script, or submits to condor.
 - run_mg5.sh / run_mg5_HAHM.sh: launch script. Writes an input.txt file with the simulation parameters (process, beam energy, cuts, etc.). One file for DMSimp (vector) one file for DPhoton (HAHM). Calls MadGraph5 with this input file.
 - submit_condor_mg5.sh: condor submission. (sets max runtime/cutoff, parameter called 'JobFlavour')
 - HEPdata.root: CMS expected/observed data from monojet invisible decay with full detector simulation from DMsimp vector model: cms_ex_20_004
@@ -18,11 +18,16 @@ See "limit_plot_files.zip" for all files required to plot:
 - limit_plot.py: python code to produce the plot. Contains read-in's of relevant root files, and hardcoded values from the following spreadsheet (sorry)
 - JGreaves_limits_calc.xlsx: a rudimentary but potentially helpful spreadsheet of results detailing calculations made. (Connection point between MA5 output and limit_plot.py)
 
-#### MadGraph simulation
-For limits calculated from MadGraph simulation, run MadGraph (I used v2_9_4) to produce .hepmc output files
-1. Run begin.py. This either runs the launch script, or submits to condor.
-2. .hepmc's will be output in the directory designated in the launch script (e.g. run_mg5.sh)
-#### MadAnalysis5
+#### MadGraph
+For limits calculated from MadGraph simulation, run MadGraph (I used v2_9_4) to produce .hepmc output files. 
+MadGraph can be temperamental. I presume here that the user already has a working version (I have not found a definitive procedure to get it working). The gist of it is: Download a clean, new version of MadGraph. At the MG5 prompt, Install hepmc, lhapdf, pythia8, madgraph_pythia_interface, madanalysis5; not necessarily in that order.
+The local directory of a working version needs to be zipped up (into "mg5.tgz" in my example) in order to be un-tar'd in 'condor space', when submitting jobs to the cluster.
+
+#### MadGraph simulation (on lxplus)
+1. Run begin.py. This either runs the launch script, or submits to condor. NOTE: running begin is designed to launch Madgraph many times, with different input parameters. 
+2. The launch scripts (e.g. run_mg5.sh) can be run individually, or the contained commands entered at the MG5 command prompt manually.
+3. .hepmc's will be output in the directory designated in the launch script (e.g. run_mg5.sh)
+#### MadAnalysis5 (on lxplus8)
 To calculate the limits from .hepmc using madanalyis on lxplus8 (madanalysis can be a bit -very- temperamental). 
 
 Configure MA5:
@@ -33,19 +38,20 @@ Configure MA5:
 5. ./bin/ma5 -b -f [-b force sample analyzer static library rebuild; -f means force answer 'y' to any prompt]  -- Maybe overkill - but ensures a complete build.
 6. exit
 7. source ./tools/SampleAnalyzer/setup.sh   -- ensures setup has completed fully
-8. Add lines TO .../madanalysis5/tools/PAD/Input/Cards/delphes_card_cms_exo_20_004.tcl: (OR just replace this input card file with the delphes_card file in the zip)  --  this is the input card corresponding to the cms_exo_20_004 analysis, which is the 13TeV Run 2 monojet analysis relevant to this work.
-9. ./bin/ma5 -R   --    (R is 'recast' mode, necessary for this analysis)
-10. install delphes
-11. install PAD
-12. set main.recast = on
+8. ./bin/ma5 -R   --    (R is 'recast' mode, necessary for this analysis)
+9. install delphes
+10. install PAD
+11. set main.recast = on
+12. REPLACE .../madanalysis5/tools/PAD/Input/Cards/delphes_card_cms_exo_20_004.tcl with the delphes_card file in the zip  --  this is the input card corresponding to the cms_exo_20_004 analysis, which is the 13TeV Run 2 monojet analysis relevant to this work. It needs to have the PDG code associated with the dark photon (18,-18) added in the appropriate places. (This step only necessary for Dark Photon HAHM model simulations)
+13. ./bin/ma5 -R   --    (R is 'recast' mode, necessary for this analysis)
+
 
 Run MA5 to obtain limits:
 1. import ..../Events/run_01/tag_1_pythia8_events.hepmc.gz  as  name_your_output
 2. submit name_your_output   (you will see Do you want to edit the recasting_card? dont answer yet.)
-3. (in another window to avoid this manual step):  cp recasting_card.dat .../name_your_output/Input/       -- this  switches off all analyses except cms_exo_20_004
+3. (in another window to avoid this manual step):  cp recasting_card.dat .../name_your_output/Input/       -- this switches off all analyses except cms_exo_20_004
 4. edit card: type Y to check that all are off except the relevant analysis, or type N just to keep going.
 5. The relevant output is stored: ..../madanalysis5/name_your_output/Output/SAF/CLs_output_summary.dat, and the expected/observed limits are at the very bottom.
-
 
 
 #### Dark Photon (Hidden Abelian Higgs Model, HAHM) model info:
