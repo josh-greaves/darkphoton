@@ -20,11 +20,11 @@ See "limit_plot_files.zip" for all files required to plot:
 
 #### MadGraph
 For limits calculated from MadGraph simulation, run MadGraph (I used v2_9_4) to produce .hepmc output files. 
-MadGraph can be temperamental. I presume here that the user already has a working version (I have not found a definitive procedure to get it working). The gist of it is: Download a clean, new version of MadGraph. At the MG5 prompt, Install hepmc, lhapdf, pythia8, madgraph_pythia_interface, madanalysis5; not necessarily in that order.
+MadGraph can be temperamental. I presume here that the user already has a working version (I have not found a definitive procedure to get it working). The gist of it is: Download a clean, new version of MadGraph. At the MG5 prompt, Install hepmc, lhapdf, pythia8, madgraph_pythia_interface, madanalysis5; not necessarily in that order. When you 'launch' a simulation, the options available should include both madanalysis and pythia.
 The local directory of a working version needs to be zipped up (into "mg5.tgz" in my example) in order to be un-tar'd in 'condor space', when submitting jobs to the cluster.
 
 #### MadGraph simulation (on lxplus)
-1. Run begin.py. This either runs the launch script, or submits to condor. NOTE: running begin is designed to launch Madgraph many times, with different input parameters. 
+1. Run begin.py. This either runs the launch script, or submits to condor. NOTE: running begin.py is designed to launch Madgraph many times, with different input parameters. 
 2. The launch scripts (e.g. run_mg5.sh) can be run individually, or the contained commands entered at the MG5 command prompt manually.
 3. .hepmc's will be output in the directory designated in the launch script (e.g. run_mg5.sh)
 #### MadAnalysis5 (on lxplus8)
@@ -42,8 +42,7 @@ Configure MA5:
 9. install delphes
 10. install PAD
 11. set main.recast = on
-12. REPLACE .../madanalysis5/tools/PAD/Input/Cards/delphes_card_cms_exo_20_004.tcl with the delphes_card file in the zip  --  this is the input card corresponding to the cms_exo_20_004 analysis, which is the 13TeV Run 2 monojet analysis relevant to this work. It needs to have the PDG code associated with the dark photon (18,-18) added in the appropriate places. (This step only necessary for Dark Photon HAHM model simulations)
-13. ./bin/ma5 -R   --    (R is 'recast' mode, necessary for this analysis)
+12. REPLACE .../madanalysis5/tools/PAD/Input/Cards/delphes_card_cms_exo_20_004.tcl with the delphes_card file in the zip  --  this is the input card corresponding to the cms_exo_20_004 analysis, which is the 13TeV Run 2 monojet analysis relevant to this work. It needs to have the PDG code associated with the dark photon (18,-18) added in the appropriate places. (This step only necessary for Dark Photon HAHM model simulations). 
 
 
 Run MA5 to obtain limits:
@@ -55,9 +54,9 @@ Run MA5 to obtain limits:
 
 
 #### Dark Photon (Hidden Abelian Higgs Model, HAHM) model info:
-HAHM model github: https://github.com/davidrcurtin/HAHM/edit/main/README.md
-HAHM papers: arXiv:1412.0018, arXiv:1312.4992. 
-HAHM DP modification github: https://github.com/violatingcp/darkphoton_highmass
+HAHM model github: https://github.com/davidrcurtin/HAHM/edit/main/README.md  
+HAHM papers: arXiv:1412.0018, arXiv:1312.4992.   
+HAHM DP modification github: https://github.com/violatingcp/darkphoton_highmass  
 
 Other relevant papers: arXiv:2203.12035, arXiv:
 
